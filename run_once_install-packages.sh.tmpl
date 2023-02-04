@@ -35,7 +35,7 @@ sudo apt-get install fonts-noto
 {{ end }}
 
 #firge nerd
-if [ ! -e "~/.fonts/FirgeNerd_v0.2.0/" ]; then
+if [ ! -d ~/.fonts/FirgeNerd_v0.2.0/ ]; then
     wget https://github.com/yuru7/Firge/releases/download/v0.2.0/FirgeNerd_v0.2.0.zip
     unzip FirgeNerd_v0.2.0.zip
     mkdir ~/.fonts
@@ -43,7 +43,7 @@ if [ ! -e "~/.fonts/FirgeNerd_v0.2.0/" ]; then
 fi
 
 #beautiful terminal
-if [ ! -e "~/.local/share/xfce4/terminal/colorschemes"]; then
+if [ ! -e ~/.local/share/xfce4/terminal/colorschemes ]; then
     git clone https://github.com/catppuccin/xfce4-terminal
     cd xfce4-terminal
     cd src
