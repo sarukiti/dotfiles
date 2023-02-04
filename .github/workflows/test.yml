@@ -10,3 +10,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install dotfiles
         run: sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply -S .
+      - name: Confirmation
+        run: |
+          lsd -a ~/
+          lsd -a ~/.fonts
+          lsd -a ~/.config
+          echo "sway dir: $(which sway)"
+          echo "nvim dir: $(which nvim)"
