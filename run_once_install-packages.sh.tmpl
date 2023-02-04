@@ -3,15 +3,17 @@
 {{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu") }}
 sudo apt-get update
 sudo apt-get upgrade
+# install sway
 sudo apt-get install curl wget sway xwayland nautilus wofi waybar zsh python3-argcomplete
 
-#install neovim
+# install neovim
 sudo apt install build-essential gdb ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip doxygen
 git clone https://github.com/neovim/neovim
 cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
+# install lsd
 {{ if eq .chezmoi.arch "arm64" }}
 wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
 sudo apt-get install ./lsd_0.23.1_arm64.deb --no-install-recommends
@@ -26,7 +28,7 @@ sudo apt-get install fonts-noto
 
 #firge nerd
 wget https://github.com/yuru7/Firge/releases/download/v0.2.0/FirgeNerd_v0.2.0.zip
-unzip Firge_v0.2.0.zip
+unzip FirgeNerd_v0.2.0.zip
 mkdir ~/.fonts
 mv FirgeNerd_v0.2.0/ ~/.fonts
 
@@ -36,3 +38,10 @@ cd xfce4-terminal
 cd src
 mkdir -p ~/.local/share/xfce4/terminal/colorschemes
 cp catppuccin-frappe.theme ~/.local/share/xfce4/terminal/colorschemes
+
+lsd -a ~/
+lsd -a ~/.fonts
+lsd -a ~/.config
+echo "sway dir: $(where sway)"
+echo "nvim dir: $(where nvim)"
+
