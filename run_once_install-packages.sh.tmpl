@@ -6,8 +6,9 @@ sudo apt-get upgrade
 
 # install sway
 # nautilusの有無でデスクトップ環境の有無を判定
-if !(type nautilus > /dev/null 2>&1); then
+if !(type xinit > /dev/null 2>&1) && (type sway > /dev/null 2>&1); then
     sudo apt-get install curl wget sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
+    sudo apt-get install xfce4-terminal --no-install-recommends
 fi
 
 # install Deno
