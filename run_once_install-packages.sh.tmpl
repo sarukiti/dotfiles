@@ -7,7 +7,7 @@ sudo apt-get upgrade
 # install sway
 # nautilusの有無でデスクトップ環境の有無を判定
 if !(type nautilus > /dev/null 2>&1); then
-    sudo apt-get install curl wget sway xwayland nautilus wofi waybar zsh python3-argcomplete
+    sudo apt-get install curl wget sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
 fi
 
 # install Deno
@@ -38,9 +38,6 @@ if !(type lsd > /dev/null 2>&1); then
     sudo apt-get install ./lsd_0.23.1_amd64.deb --no-install-recommends
     {{ end }}
 fi
-
-#noto fonts
-sudo apt-get install fonts-noto
 {{ end }}
 
 #firge nerd
