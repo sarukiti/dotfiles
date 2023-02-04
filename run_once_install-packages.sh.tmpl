@@ -8,6 +8,7 @@ sudo apt-get install curl wget sway xwayland nautilus wofi waybar zsh python3-ar
 #install neovim
 sudo apt install build-essential gdb ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip doxygen
 git clone https://github.com/neovim/neovim
+cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
@@ -15,7 +16,7 @@ sudo make install
 wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
 sudo apt-get install ./lsd_0.23.1_arm64.deb --no-install-recommends
 {{ else if eq .chezmoi.arch "amd64" }}
-wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
+wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
 sudo apt-get install ./lsd_0.23.1_amd64.deb --no-install-recommends
 {{ end }}
 
