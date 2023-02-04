@@ -1,0 +1,45 @@
+@import "frappe.css";
+
+* {
+	font-family: FirgeNerd;
+}
+
+window#waybar {
+	background-color: @base;
+}
+
+#custom-clock,
+#window {
+	color: @text;
+}
+
+#tray,
+#workspaces {
+	border-radius: 10px;
+	background-color: @surface1;
+	padding: 0 5px;
+	margin: 4 8px; 
+}
+
+#workspaces button {
+	color: @overlay0;
+}
+
+#workspaces button.focused {
+	color: @text;
+}
+
+#workspaces button:hover {
+	animation: none;
+	transition: unset;
+	border: 0px;
+	border-radius: 15px;
+}
+
+#workspaces button:active {
+	background-color: @overlay0;
+}
+
+#tray {
+	padding: 0 15px;
+}

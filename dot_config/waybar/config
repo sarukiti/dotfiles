@@ -1,0 +1,23 @@
+{
+	"height": 42,
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode"
+	],
+	"modules-center": [
+		"sway/window"
+	],
+	"modules-right": [
+		"custom/clock",
+		"tray"
+	],
+
+	"tray": {
+		"spacing": 10,
+	},
+	"custom/clock": {
+		"exec": "date '+%a %d %b %I:%M:%S %p'",
+		"format": "{}",
+		"interval": 1
+	}
+}
