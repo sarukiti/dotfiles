@@ -5,9 +5,19 @@ sudo apt-get update
 sudo apt-get upgrade
 
 # install sway
-# nautilusの有無でデスクトップ環境の有無を判定
-if !(type nautilus > /dev/null 2>&1); then
-    sudo apt-get install curl wget sway xwayland nautilus wofi waybar zsh python3-argcomplete
+# xinitとswayの有無でデスクトップ環境の有無を判定
+if ! (type xinit > /dev/null 2>&1) && ! (type sway > /dev/null 2>&1); then
+    sudo apt-get install curl wget git sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
+    sudo apt-get install xfce4-terminal --no-install-recommends
+fi
+
+# install Deno
+if !(type deno > /dev/null 2>&1); then
+    {{ if eq .chezmoi.arch "arm64" }}
+    curl -s https://gist.githubusercontent.com/LukeChannings/09d53f5c364391042186518c8598b85e/raw/ac8cd8c675b985edd4b3e16df63ffef14d1f0e24/deno_install.sh | sh
+    {{ else if eq .chezmoi.arch "amd64" }}
+    curl -fsSL https://deno.land/x/install/install.sh | sh
+    {{ end }}
 fi
 
 # install neovim
@@ -29,9 +39,6 @@ if !(type lsd > /dev/null 2>&1); then
     sudo apt-get install ./lsd_0.23.1_amd64.deb --no-install-recommends
     {{ end }}
 fi
-
-#noto fonts
-sudo apt-get install fonts-noto
 {{ end }}
 
 #firge nerd
