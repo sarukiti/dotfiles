@@ -8,12 +8,20 @@
 		"sway/window"
 	],
 	"modules-right": [
+		"cpu",
+		"memory",
 		"custom/clock",
 		"tray"
 	],
 
 	"tray": {
 		"spacing": 10,
+	},
+	"cpu": {
+		"format": "{usage}%"
+	},
+	"memory": {
+		"format": "{percentage}%"
 	},
 	"custom/clock": {
 		"exec": "date '+%a %d %b %I:%M:%S %p'",

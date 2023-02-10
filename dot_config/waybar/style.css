@@ -1,7 +1,7 @@
 @import "frappe.css";
 
 * {
-	font-family: FirgeNerd;
+	font-family: Firge, "Font Awesome 6 Free";
 }
 
 window#waybar {
@@ -11,6 +11,23 @@ window#waybar {
 #custom-clock,
 #window {
 	color: @text;
+}
+
+#cpu,
+#memory {
+	background-color: @surface1;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 0 5px;
+}
+
+#cpu {
+	margin-left: 5px;
+	border-radius: 10px 0 0 10px;
+}
+#memory {
+	margin-right: 5px;
+	border-radius: 0 10px 10px 0;
 }
 
 #tray,
