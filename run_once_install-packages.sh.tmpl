@@ -1,14 +1,14 @@
 #!/bin/bash
 
 {{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu") }}
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 # install sway
 # xinitとswayの有無でデスクトップ環境の有無を判定
 if ! (type xinit > /dev/null 2>&1) && ! (type sway > /dev/null 2>&1); then
-    sudo apt-get install curl wget git sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
-    sudo apt-get install xfce4-terminal --no-install-recommends
+    sudo apt-get -y install curl wget git sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
+    sudo apt-get -y install xfce4-terminal --no-install-recommends
 fi
 
 # install Deno
@@ -22,7 +22,7 @@ fi
 
 # install neovim
 if !(type nvim > /dev/null 2>&1); then
-    sudo apt install build-essential gdb ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip doxygen
+    sudo apt-get -y install build-essential gdb ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip doxygen
     git clone https://github.com/neovim/neovim
     cd neovim
     make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -33,10 +33,10 @@ fi
 if !(type lsd > /dev/null 2>&1); then
     {{ if eq .chezmoi.arch "arm64" }}
     wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
-    sudo apt-get install ./lsd_0.23.1_arm64.deb --no-install-recommends
+    sudo apt-get -y install ./lsd_0.23.1_arm64.deb --no-install-recommends
     {{ else if eq .chezmoi.arch "amd64" }}
     wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
-    sudo apt-get install ./lsd_0.23.1_amd64.deb --no-install-recommends
+    sudo apt-get -y install ./lsd_0.23.1_amd64.deb --no-install-recommends
     {{ end }}
 fi
 {{ end }}
