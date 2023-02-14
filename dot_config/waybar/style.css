@@ -13,29 +13,34 @@ window#waybar {
 	color: @text;
 }
 
+#custom-clock {
+	margin: 0px 4px
+}
+
 #cpu,
 #memory {
 	background-color: @surface1;
 	margin-top: 4px;
 	margin-bottom: 4px;
-	padding: 0 5px;
+	padding: 0 10px;
 }
-
 #cpu {
-	margin-left: 5px;
+	margin-left: 4px;
 	border-radius: 10px 0 0 10px;
 }
 #memory {
-	margin-right: 5px;
+	margin-right: 4px;
 	border-radius: 0 10px 10px 0;
 }
 
+#tray {
+	padding: 0 15px;
+}
 #tray,
 #workspaces {
 	border-radius: 10px;
 	background-color: @surface1;
-	padding: 0 5px;
-	margin: 4 8px; 
+	margin: 4px 8px 4px 4px; 
 }
 
 #workspaces button {
@@ -57,6 +62,4 @@ window#waybar {
 	background-color: @overlay0;
 }
 
-#tray {
-	padding: 0 15px;
-}
+

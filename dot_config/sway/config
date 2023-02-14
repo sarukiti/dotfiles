@@ -36,7 +36,7 @@ exec_always python3 ~/.local/bin/autotiling
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/meihu_2nd_aniv.jpeg fill
+output * bg /home/j21035/Pictures/meihu_2nd_aniv.jpeg fill
 #
 # Example configuration:
 #

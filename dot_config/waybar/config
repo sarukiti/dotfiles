@@ -8,9 +8,9 @@
 		"sway/window"
 	],
 	"modules-right": [
+		"custom/clock",
 		"cpu",
 		"memory",
-		"custom/clock",
 		"tray"
 	],
 
