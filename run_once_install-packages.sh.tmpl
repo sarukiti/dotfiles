@@ -1,59 +1,84 @@
 #!/bin/bash
 
+function Install_Sway(){
+    if ! (type xinit > /dev/null 2>&1) && ! (type sway > /dev/null 2>&1); then
+        sudo apt-get -y install curl wget git sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
+        sudo apt-get -y install xfce4-terminal --no-install-recommends
+    fi
+}
+
+function Install_Deno(){
+    if !(type deno > /dev/null 2>&1); then
+        {{ if eq .chezmoi.arch "arm64" }}
+            curl -s https://gist.githubusercontent.com/LukeChannings/09d53f5c364391042186518c8598b85e/raw/ac8cd8c675b985edd4b3e16df63ffef14d1f0e24/deno_install.sh | sh
+        {{ else if eq .chezmoi.arch "amd64" }}
+            curl -fsSL https://deno.land/x/install/install.sh | sh
+        {{ end }}
+    fi
+}
+
+function Install_Nvim(){
+    if !(type nvim > /dev/null 2>&1); then
+        sudo apt-get -y install build-essential gdb ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip doxygen
+        git clone https://github.com/neovim/neovim
+        cd neovim
+        make CMAKE_BUILD_TYPE=RelWithDebInfo
+        sudo make install
+    fi
+}
+
+function Install_Lsd(){
+    if !(type lsd > /dev/null 2>&1); then
+        {{ if eq .chezmoi.arch "arm64" }}
+            wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
+            sudo apt-get -y install ./lsd_0.23.1_arm64.deb --no-install-recommends
+        {{ else if eq .chezmoi.arch "amd64" }}
+            wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+            sudo apt-get -y install ./lsd_0.23.1_amd64.deb --no-install-recommends
+        {{ end }}
+    fi
+}
+
+function Install_FirgeNerd(){
+    if [ ! -d ~/.fonts/FirgeNerd_v0.2.0/ ]; then
+        wget https://github.com/yuru7/Firge/releases/download/v0.2.0/FirgeNerd_v0.2.0.zip
+        unzip FirgeNerd_v0.2.0.zip
+        mkdir ~/.fonts
+        mv FirgeNerd_v0.2.0/ ~/.fonts
+    fi
+}
+
+function Config_Xfce4_Terminal(){
+    if [ ! -e ~/.local/share/xfce4/terminal/colorschemes ]; then
+        git clone https://github.com/catppuccin/xfce4-terminal
+        cd xfce4-terminal
+        cd src
+        mkdir -p ~/.local/share/xfce4/terminal/colorschemes
+        cp catppuccin-frappe.theme ~/.local/share/xfce4/terminal/colorschemes
+    fi
+}
+
 {{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu") }}
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
 # install sway
 # xinitとswayの有無でデスクトップ環境の有無を判定
-if ! (type xinit > /dev/null 2>&1) && ! (type sway > /dev/null 2>&1); then
-    sudo apt-get -y install curl wget git sway xwayland nautilus wofi waybar zsh python3-argcomplete fonts-noto
-    sudo apt-get -y install xfce4-terminal --no-install-recommends
-fi
+read -n1 -p "Install Sway? (y/N): " yn; [[ $yn =~ y|Y ]] && Install_Sway || echo abort
 
 # install Deno
-if !(type deno > /dev/null 2>&1); then
-    {{ if eq .chezmoi.arch "arm64" }}
-    curl -s https://gist.githubusercontent.com/LukeChannings/09d53f5c364391042186518c8598b85e/raw/ac8cd8c675b985edd4b3e16df63ffef14d1f0e24/deno_install.sh | sh
-    {{ else if eq .chezmoi.arch "amd64" }}
-    curl -fsSL https://deno.land/x/install/install.sh | sh
-    {{ end }}
-fi
+read -n1 -p "Install Deno? (y/N): " yn; [[ $yn =~ y|Y ]] && Install_Deno || echo abort
 
 # install neovim
-if !(type nvim > /dev/null 2>&1); then
-    sudo apt-get -y install build-essential gdb ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip doxygen
-    git clone https://github.com/neovim/neovim
-    cd neovim
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
-fi
+read -n1 -p "Install NeoVim? (y/N): " yn; [[ $yn =~ y|Y ]] && Install_Nvim || echo abort
 
 # install lsd
-if !(type lsd > /dev/null 2>&1); then
-    {{ if eq .chezmoi.arch "arm64" }}
-    wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
-    sudo apt-get -y install ./lsd_0.23.1_arm64.deb --no-install-recommends
-    {{ else if eq .chezmoi.arch "amd64" }}
-    wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
-    sudo apt-get -y install ./lsd_0.23.1_amd64.deb --no-install-recommends
-    {{ end }}
-fi
+read -n1 -p "Install lsd? (y/N): " yn; [[ $yn =~ y|Y ]] && Install_Lsd || echo abort
+
 {{ end }}
 
 #firge nerd
-if [ ! -d ~/.fonts/FirgeNerd_v0.2.0/ ]; then
-    wget https://github.com/yuru7/Firge/releases/download/v0.2.0/FirgeNerd_v0.2.0.zip
-    unzip FirgeNerd_v0.2.0.zip
-    mkdir ~/.fonts
-    mv FirgeNerd_v0.2.0/ ~/.fonts
-fi
+read -n1 -p "Install FirgeNerd? (y/N): " yn; [[ $yn =~ y|Y ]] && Install_FirgeNerd || echo abort
 
 #beautiful terminal
-if [ ! -e ~/.local/share/xfce4/terminal/colorschemes ]; then
-    git clone https://github.com/catppuccin/xfce4-terminal
-    cd xfce4-terminal
-    cd src
-    mkdir -p ~/.local/share/xfce4/terminal/colorschemes
-    cp catppuccin-frappe.theme ~/.local/share/xfce4/terminal/colorschemes
-fi
+read -n1 -p "Configure Xfce4 terminal? (y/N): " yn; [[ $yn =~ y|Y ]] && Config_Xfce4_Terminal || echo abort
