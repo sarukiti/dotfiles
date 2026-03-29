@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   cmd-eikana = pkgs.callPackage ../packages/cmd-eikana.nix { };
@@ -22,6 +22,14 @@ in
 
   home.sessionVariables = {
     EDITOR = "vim";
+  };
+
+  programs.desktoppr = {
+    enable = true;
+    settings = {
+      picture = "${config.home.homeDirectory}/dotfiles/img/帝国少女.png";
+      scale = "fill";
+    };
   };
 
   programs.home-manager.enable = true;
