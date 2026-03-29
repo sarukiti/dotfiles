@@ -8,6 +8,7 @@
         email = "sarukiti1891@gmail.com";
       };
     };
+    ignores = [ ".envrc" ".direnv/" ];
   };
 
   home.file = {

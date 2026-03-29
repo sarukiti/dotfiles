@@ -11,8 +11,9 @@ in
 
   imports = [
     ./git/git.nix
-    ./ghostty.nix
     ./zsh/zsh.nix
+    ./ghostty.nix
+    ./direnv.nix  
   ];
 
   home.packages = [
