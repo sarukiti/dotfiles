@@ -11,4 +11,15 @@
   system.stateVersion = 6;
   nix.enable = false;
   security.pam.services.sudo_local.touchIdAuth = true;
+
+  system.primaryUser = "sarukiti";
+  system.defaults = {
+    finder = {
+      AppleShowAllExtensions = true;
+      ShowPathbar = true;
+    };
+    dock = {
+      show-recents = false;
+    };
+  };
 }
