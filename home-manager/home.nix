@@ -29,6 +29,7 @@ in
     # # "Hello, world!" when run.
     # pkgs.hello
     pkgs.code-cursor
+    pkgs.ghostty-bin
     cmd-eikana
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
