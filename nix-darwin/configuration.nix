@@ -1,5 +1,7 @@
 {
-  self, ...
+  self,
+  pkgs,
+  ...
 }:
 {
   users.users."sarukiti".home = "/Users/sarukiti";
@@ -13,6 +15,10 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.primaryUser = "sarukiti";
+
+  # ターミナル用: 日本語 + Nerd Font（UDEV Gothic NF）
+  fonts.packages = [ pkgs.udev-gothic-nf ];
+
   system.defaults = {
     finder = {
       AppleShowAllExtensions = true;

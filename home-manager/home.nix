@@ -12,6 +12,7 @@ in
   imports = [
     ./git/git.nix
     ./ghostty.nix
+    ./zsh/zsh.nix
   ];
 
   home.packages = [
@@ -33,6 +34,4 @@ in
   };
 
   programs.home-manager.enable = true;
-
-  programs.zsh.enable = true;
 }
