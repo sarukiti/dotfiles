@@ -11,12 +11,12 @@ in
 
   imports = [
     ./git/git.nix
+    ./ghostty.nix
   ];
 
   home.packages = [
     pkgs.gh
     pkgs.code-cursor
-    pkgs.ghostty-bin
     cmd-eikana
   ];
 
