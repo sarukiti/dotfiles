@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  cmd-eikana = pkgs.callPackage ../packages/cmd-eikana.nix { };
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -26,6 +29,7 @@
     # # "Hello, world!" when run.
     # pkgs.hello
     pkgs.code-cursor
+    cmd-eikana
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
