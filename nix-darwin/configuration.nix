@@ -20,6 +20,9 @@
   fonts.packages = [ pkgs.udev-gothic-nf ];
 
   system.defaults = {
+    # F1–F12 をそのままファンクションキーとして使う（明るさ等は Fn + Fキー）
+    NSGlobalDomain."com.apple.keyboard.fnState" = true;
+
     finder = {
       AppleShowAllExtensions = true;
       ShowPathbar = true;
