@@ -7,8 +7,8 @@
     enableZshIntegration = true;
 
     settings = {
-      font-family = "UDEV Gothic NF";
-      font-size = 14;
+      theme = "Catppuccin Mocha";
+      font-family = "UDEV Gothic 35NF";
       background-opacity = 0.88;
       background-blur = true;
       background-opacity-cells = false;
