@@ -16,6 +16,7 @@ in
   ];
 
   home.packages = [
+    pkgs.ripgrep
     pkgs.gh
     pkgs.fastfetch
     pkgs.code-cursor
