@@ -17,6 +17,7 @@ in
 
   home.packages = [
     pkgs.gh
+    pkgs.fastfetch
     pkgs.code-cursor
     cmd-eikana
   ];
