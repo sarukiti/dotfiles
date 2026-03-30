@@ -21,6 +21,8 @@ in
     pkgs.gh
     pkgs.fastfetch
     pkgs.code-cursor
+    pkgs.claude-code
+    pkgs.discord
     cmd-eikana
   ];
 

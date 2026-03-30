@@ -16,6 +16,18 @@
 
   system.primaryUser = "sarukiti";
 
+  # Homebrew を Nix（Brewfile 生成 + darwin-rebuild 時の brew bundle）と連携
+  # Homebrew 本体のインストールは https://brew.sh（nix-darwin は入れない）
+  homebrew = {
+    enable = true;
+    enableZshIntegration = true;
+    global.brewfile = true;
+    brews = [ ];
+    casks = [
+      "docker"
+    ];
+  };
+
   # ターミナル用: 日本語 + Nerd Font（UDEV Gothic NF）
   fonts.packages = [ pkgs.udev-gothic-nf ];
 
