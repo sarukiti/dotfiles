@@ -13,16 +13,17 @@ in
     ./git/git.nix
     ./zsh/zsh.nix
     ./ghostty.nix
-    ./direnv.nix  
+    ./direnv.nix
+    ./neovim.nix
   ];
 
   home.packages = [
+    pkgs.rustup
     pkgs.ripgrep
     pkgs.gh
     pkgs.fastfetch
     pkgs.code-cursor
     pkgs.claude-code
-    pkgs.discord
     cmd-eikana
   ];
 

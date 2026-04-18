@@ -22,7 +22,9 @@
     enable = true;
     enableZshIntegration = true;
     global.brewfile = true;
-    brews = [ ];
+    brews = [
+      "typst"
+    ];
     casks = [
       "docker"
     ];
