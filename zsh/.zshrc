@@ -24,7 +24,11 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 autoload -Uz compinit && compinit
 
 # Editor
-export EDITOR=vim
+export EDITOR=nvim
+if (( ${+commands[nvim]} )); then
+  alias vi=nvim
+  alias vim=nvim
+fi
 
 # direnv
 eval "$(direnv hook zsh)"
