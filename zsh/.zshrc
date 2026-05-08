@@ -7,10 +7,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # nodebrew（Node.js / npm。Mason の pyright・jsonls 等がターミナル外の Neovim でも npm を参照できるよう init.lua でも PATH を足している）
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
-# Powerlevel10k (instant prompt はこの前に置く必要がある)
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
