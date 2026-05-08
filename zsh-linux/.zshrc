@@ -1,10 +1,12 @@
+export TERM=xterm-256color
+
 # PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Lima: make sure iptables and mount.fuse3 are available
+export PATH="$PATH:/usr/sbin:/sbin"
 
-# nodebrew（Node.js / npm。Mason の pyright・jsonls 等がターミナル外の Neovim でも npm を参照できるよう init.lua でも PATH を足している）
+# nodebrew
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
@@ -24,3 +26,8 @@ fi
 
 # direnv
 eval "$(direnv hook zsh)"
+# Lima BEGIN
+# Make sure iptables and mount.fuse3 are available
+PATH="$PATH:/usr/sbin:/sbin"
+export PATH
+# Lima END

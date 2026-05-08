@@ -11,10 +11,17 @@ sudo apt-get install -y \
   curl \
   git \
   stow \
-  unzip
+  unzip \
+  direnv \
+  zsh
 
 if (( ! $+commands[rustup] )); then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  source "$HOME/.cargo/env"
+fi
+
+if (( ! $+commands[sheldon] )); then
+  cargo install sheldon
 fi
 
 if (( ! $+commands[claude] )); then
@@ -22,7 +29,11 @@ if (( ! $+commands[claude] )); then
 fi
 
 cd "$DOTFILES"
-stow nvim zsh git direnv
+
+# Backup Lima-managed (or other existing) .zshrc before stowing
+[[ -f "$HOME/.zshrc" && ! -L "$HOME/.zshrc" ]] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+
+stow -t "$HOME" nvim zsh-linux git direnv sheldon
 
 print
 print 'Done! Open a new terminal to apply zsh config.'

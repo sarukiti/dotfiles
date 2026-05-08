@@ -34,7 +34,7 @@ if (( ! $+commands[claude] )); then
 fi
 
 cd "$DOTFILES"
-stow nvim ghostty zsh git direnv
+stow -t "$HOME" nvim ghostty zsh git direnv sheldon
 
 print
 print 'Done! Open a new terminal to apply zsh config.'
