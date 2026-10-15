@@ -31,3 +31,6 @@ eval "$(direnv hook zsh)"
 PATH="$PATH:/usr/sbin:/sbin"
 export PATH
 # Lima END
+
+source /opt/ros/jazzy/setup.zsh
+

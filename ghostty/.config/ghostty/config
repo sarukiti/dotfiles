@@ -4,3 +4,4 @@ background-opacity = 0.88
 background-blur = true
 background-opacity-cells = false
 shell-integration = zsh
+shell-integration-features = ssh-terminfo,ssh-env
